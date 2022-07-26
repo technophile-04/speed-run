@@ -29,10 +29,14 @@ contract Vendor is Ownable {
         emit BuyTokens(msg.sender, msg.value, numberOfTokens);
     }
 
-    function withdraw() public onlyOwner {
-        (bool success, ) = payable(msg.sender).call{
-            value: address(this).balance
-        }("");
+    function withdraw(uint256 _amountToWithdraw) public onlyOwner {
+        require(
+            address(this).balance >= _amountToWithdraw,
+            "Not enought funds to withdraw"
+        );
+        (bool success, ) = payable(msg.sender).call{value: _amountToWithdraw}(
+            ""
+        );
 
         require(success, "Transfer of eth failed to owner");
     }
