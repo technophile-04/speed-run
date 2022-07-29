@@ -60,7 +60,7 @@ const { ethers } = require("ethers");
 */
 
 /// 📡 What chain are your contracts deployed to?
-const targetNetwork = NETWORKS.localhost; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
+const targetNetwork = NETWORKS.rinkeby; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
 // 😬 Sorry for all the console logging
 const DEBUG = true;
@@ -656,6 +656,11 @@ function App(props) {
           blockExplorer={blockExplorer}
         />
         {faucetHint}
+      </div>
+
+      <div style={{ marginTop: 32, opacity: 0.5 }}>
+        Created by{" "}
+        <Address value={"0x55b9CB0bCf56057010b9c471e7D42d60e1111EEa"} ensProvider={mainnetProvider} fontSize={16} />
       </div>
 
       {/* 🗺 Extra UI like gas price, eth price, faucet, and support: */}
